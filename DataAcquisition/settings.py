@@ -14,12 +14,24 @@ BOT_NAME = 'DataAcquisition'
 SPIDER_MODULES = ['DataAcquisition.spiders']
 NEWSPIDER_MODULE = 'DataAcquisition.spiders'
 
+# MONGO_HOST = '106.14.176.62'
+MONGO_HOST = 'localhost'
+MONGO_PORT = 27017
+# MONGO_USER = 'llps'
+# MONGO_PSW = 'llps&789'
+MONGO_DB = 'eleme'
+MONGO_COLL = 'cities'
+
+MYSQL_HOST = "192.168.10.121"
+MYSQL_USER = 'hzyg'
+MYSQL_PASSWORD = '@hzyq20180426..'
+MYSQL_DB = 'yfhunt'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'DataAcquisition (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -39,10 +51,12 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+# DEFAULT_REQUEST_HEADERS = {
+#   'Accept': 'application/json, text/plain, */*',
+#   'Accept-Language': 'zh-CN,zh;q=0.9',
+#   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+#   'Cookie': 'ubt_ssid=33o082pi39m1xaftltj45loe51cn0dqz_2018-07-18; _utrace=9c3e0f93446bfff24e0614e219fd9b17_2018-07-18; eleme__ele_me=bbc480410bb940b35df8af170634bfe6%3Ae6eb2d41dc069edbeb37b3c66dc6f5bcd6e9da4b; track_id=1534214884|1c434f626ff2031c0a5f16c09a5ec5f59e531e81f8f3e5d715|766ada6cac516085709b1a21a5203ba4; USERID=276010313; SID=mJmhEeoydh3sqnakcYO2QtzhVvUA7QfeXE1A'
+# }
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
@@ -64,9 +78,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'DataAcquisition.pipelines.DataacquisitionPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   # 'DataAcquisition.pipelines.DataacquisitionPipeline': 300,
+    'DataAcquisition.pipelines.MongodbPipeline': 350,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
