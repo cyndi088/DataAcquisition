@@ -2,7 +2,7 @@
 import scrapy
 import json
 import geohash
-from ..items import CitiesItem
+from .. items import CitiesItem
 
 
 class CitiesSpider(scrapy.Spider):

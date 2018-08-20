@@ -20,7 +20,7 @@ MONGO_PORT = 27017
 # MONGO_USER = 'llps'
 # MONGO_PSW = 'llps&789'
 MONGO_DB = 'eleme'
-MONGO_COLL = 'cities'
+MONGO_COLL = 'cities_test'
 
 MYSQL_HOST = "192.168.10.121"
 MYSQL_USER = 'hzyg'
