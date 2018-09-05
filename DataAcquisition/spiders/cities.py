@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import json
-from Geohash import geohash
+# from Geohash import geohash
+import geohash
 from DataAcquisition.items import CitiesItem
 
 
