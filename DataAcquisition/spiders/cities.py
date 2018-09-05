@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import json
-import geohash
-from .. items import CitiesItem
+from Geohash import geohash
+from DataAcquisition.items import CitiesItem
 
 
 class CitiesSpider(scrapy.Spider):
