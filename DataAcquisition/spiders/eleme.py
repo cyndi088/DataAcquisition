@@ -2,6 +2,7 @@
 import scrapy
 import json
 from scrapy import Request
+from DataAcquisition.items import RestaurantItem
 
 
 class ElemeSpider(scrapy.Spider):
@@ -28,8 +29,11 @@ class ElemeSpider(scrapy.Spider):
     def restaurants_parse(self, response):
         res = response.text
         restaurant_list = json.loads(res, encoding='gbk')
+        i = 0
         for restaurant in restaurant_list:
             print('3333333333333333333333333333333')
             rest_id = restaurant['id']
             print(rest_id)
+            i += 1
             print('4444444444444444444444444444444')
+        print(i)

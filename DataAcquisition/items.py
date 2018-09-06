@@ -22,3 +22,7 @@ class CitiesItem(scrapy.Item):
     geohash = scrapy.Field()     # 经纬度对应的geohash值
     name = scrapy.Field()        # 城市全称
     pinyin = scrapy.Field()      # 城市拼音
+
+
+class RestaurantItem(scrapy.Item):
+    pass
