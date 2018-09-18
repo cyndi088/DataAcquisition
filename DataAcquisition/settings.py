@@ -38,16 +38,26 @@ CONCURRENT_REQUESTS = 4
 DOWNLOAD_TIMEOUT = 10
 HTTPPROXY_ENABLED = True
 PROXIES = [
-    "http://183.135.253.38:36974",
-    "http://223.242.246.26:35714",
-    "http://119.180.131.123:8060",
-    "http://183.135.250.188:33704",
-    "http://60.175.199.186:37541",
-    "http://183.129.244.13:10080",
-    "http://120.39.160.216:45703",
-    "http://123.161.156.155:32989",
-    "http://118.190.95.35:9001",
-    "http://123.55.92.61:26413"]
+    "http://123.157.67.30:34942",
+    "http://36.89.215.186:53281",
+    "http://47.105.84.81:80",
+    "http://193.150.117.74:8000",
+    "http://109.195.150.128:37564",
+    "http://185.116.202.225:8080",
+    "http://183.129.244.15:10800",
+    "http://178.128.208.69:80",
+    "http://151.106.52.254:5836",
+    "http://95.170.113.185:40100",
+    "http://94.142.234.37:43193",
+    "http://188.0.121.116:36169",
+    "http://112.98.126.98:37614",
+    "http://91.143.38.58:41258",
+    "http://185.255.91.9:32231",
+    "http://185.216.16.6:8080",
+    "http://45.76.49.76:8080",
+    "http://103.76.199.186:53281",
+    "http://103.112.162.34:8080",
+    "http://89.184.13.120:35184",]
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -67,6 +77,8 @@ COOKIES_ENABLED = True
 DEFAULT_REQUEST_HEADERS = {
   'Accept': 'application/json, text/plain, */*',
   'Accept-Language': 'zh-CN,zh;q=0.9',
+  'Path': '/restapi/shopping/restaurants?extras%5B%5D=activities&geohash=wtm5uruvh6rm&latitude=30.233873&limit=24&longitude=119.724733&offset=72&terminal=web',
+  'Scheme': 'https',
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                 'Chrome/68.0.3440.106 Safari/537.36',
   'Referer': 'https://www.ele.me/place/wtm5uruvh6rm?latitude=30.233873&longitude=119.724733',

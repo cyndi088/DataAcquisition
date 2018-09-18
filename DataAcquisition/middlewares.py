@@ -25,7 +25,7 @@ class RandomProxyMiddleware(object):
 
     def process_request(self, request, spider):
         request.meta['proxy'] = random.choice(self.proxies)
-        print('use $s as prosy' % request.meta['proxy'])
+        print('use %s as proxy' % request.meta['proxy'])
 
     def process_response(self, request, response, spider):
         cur_proxy = request.meta['proxy']
