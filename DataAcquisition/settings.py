@@ -57,7 +57,7 @@ PROXIES = [
     "http://45.76.49.76:8080",
     "http://103.76.199.186:53281",
     "http://103.112.162.34:8080",
-    "http://89.184.13.120:35184",]
+    "http://89.184.13.120:35184"]
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -77,7 +77,8 @@ COOKIES_ENABLED = True
 DEFAULT_REQUEST_HEADERS = {
   'Accept': 'application/json, text/plain, */*',
   'Accept-Language': 'zh-CN,zh;q=0.9',
-  'Path': '/restapi/shopping/restaurants?extras%5B%5D=activities&geohash=wtm5uruvh6rm&latitude=30.233873&limit=24&longitude=119.724733&offset=72&terminal=web',
+  'Path': '/restapi/shopping/restaurants?extras%5B%5D=activities&geohash=wtm5uruvh6rm&latitude=30.233873&limit=24'
+          '&longitude=119.724733&offset=72&terminal=web',
   'Scheme': 'https',
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                 'Chrome/68.0.3440.106 Safari/537.36',
