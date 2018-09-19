@@ -24,7 +24,10 @@ class ElemeSpider(scrapy.Spider):
         n = 0
         for data in data_list:
             n += 1
-            request = Request(restaurants_parse_url % (data['geohash'], data['latitude'], data['longitude'], 72),
+            geohash = data['geohash']
+            latitude = data['latitude']
+            longitude = data['longitude']
+            request = Request(restaurants_parse_url % (geohash, latitude, longitude, 0),
                               callback=self.restaurants_parse, meta={'n': n}, dont_filter=True)
             yield request
 
@@ -35,9 +38,21 @@ class ElemeSpider(scrapy.Spider):
         i = 0
         for restaurant in restaurant_list:
             i += 1
-            rest_id = restaurant['id']
-            print('3333333333333333333333333333333')
-            print(n)
-            print(i)
-            print(rest_id)
-            print('4444444444444444444444444444444')
+            rest_id = str(restaurant['id'])
+            latitude = restaurant['latitude']
+            longitude = restaurant['longitude']
+            info_url = 'https://www.ele.me/restapi/shopping/restaurant/%s?extras[]=flavors&extras[]=qualification&latitude=%f&longitude=%f&terminal=web'
+            request = Request(info_url % (rest_id, latitude, longitude), callback=self.info_parse, dont_filter=True)
+            # print('3333333333333333333333333333333')
+            # print(n)
+            # print(i)
+            # print(rest_id)
+            # print('4444444444444444444444444444444')
+            yield request
+
+    def info_parse(self, response):
+        res = response.text
+        print('*************************')
+        print(res)
+        print('*************************')
+

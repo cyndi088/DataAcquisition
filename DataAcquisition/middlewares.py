@@ -5,13 +5,20 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 import random
+import requests
 from scrapy import signals
 from scrapy.exceptions import NotConfigured
 
 
 class RandomProxyMiddleware(object):
     def __init__(self, settings):
-        self.proxies = settings.getlist('PROXIES')
+        # self.proxies = settings.getlist('PROXIES')
+        res = requests.get('http://api3.xiguadaili.com/ip/?tid=557678928727000&num=20&format=json')
+        data_list = res.json()
+        proxies_list = []
+        for data in data_list:
+            proxy = 'http://' + data['host'] + ':' + str(data['port'])
+            self.proxies = proxies_list.append(proxy)
         if not self.proxies:
             raise NotConfigured
         self.stats = {}.fromkeys(self.proxies, 0)

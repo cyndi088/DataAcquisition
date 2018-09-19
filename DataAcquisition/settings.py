@@ -38,26 +38,26 @@ CONCURRENT_REQUESTS = 4
 DOWNLOAD_TIMEOUT = 10
 HTTPPROXY_ENABLED = True
 PROXIES = [
-    "http://123.157.67.30:34942",
-    "http://36.89.215.186:53281",
-    "http://47.105.84.81:80",
-    "http://193.150.117.74:8000",
-    "http://109.195.150.128:37564",
-    "http://185.116.202.225:8080",
-    "http://183.129.244.15:10800",
-    "http://178.128.208.69:80",
-    "http://151.106.52.254:5836",
-    "http://95.170.113.185:40100",
-    "http://94.142.234.37:43193",
-    "http://188.0.121.116:36169",
-    "http://112.98.126.98:37614",
-    "http://91.143.38.58:41258",
-    "http://185.255.91.9:32231",
-    "http://185.216.16.6:8080",
-    "http://45.76.49.76:8080",
-    "http://103.76.199.186:53281",
-    "http://103.112.162.34:8080",
-    "http://89.184.13.120:35184"]
+    "http://111.93.84.210:32431",
+    "http://61.178.176.25:58938",
+    "http://59.152.199.42:38157",
+    "http://221.7.255.167:80",
+    "http://121.31.100.42:8123",
+    "http://24.52.150.96:46658",
+    "http://47.105.131.134:80",
+    "http://128.199.90.230:8118",
+    "http://106.56.102.137:8070",
+    "http://47.105.131.144:80",
+    "http://110.77.211.164:8080",
+    "http://43.245.35.153:23500",
+    "http://175.101.11.132:55345",
+    "http://47.105.73.113:80",
+    "http://110.73.41.214:8123",
+    "http://175.175.219.88:1133",
+    "http://47.105.91.138:80",
+    "http://171.38.79.29:8123",
+    "http://92.113.181.6:48380",
+    "http://221.7.255.167:8080"]
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -75,14 +75,14 @@ COOKIES_ENABLED = True
 
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
-  'Accept': 'application/json, text/plain, */*',
-  'Accept-Language': 'zh-CN,zh;q=0.9',
-  'Path': '/restapi/shopping/restaurants?extras%5B%5D=activities&geohash=wtm5uruvh6rm&latitude=30.233873&limit=24'
-          '&longitude=119.724733&offset=72&terminal=web',
-  'Scheme': 'https',
+  # 'Accept': 'application/json, text/plain, */*',
+  # 'Accept-Language': 'zh-CN,zh;q=0.9',
+  # 'Path': '/restapi/shopping/restaurants?extras%5B%5D=activities&geohash=wtm5uruvh6rm&latitude=30.233873&limit=24'
+  #         '&longitude=119.724733&offset=72&terminal=web',
+  # 'Scheme': 'https',
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                 'Chrome/68.0.3440.106 Safari/537.36',
-  'Referer': 'https://www.ele.me/place/wtm5uruvh6rm?latitude=30.233873&longitude=119.724733',
+  # 'Referer': 'https://www.ele.me/place/wtm5uruvh6rm?latitude=30.233873&longitude=119.724733',
   'Cookie': 'ubt_ssid=0wc8wcpdkke5njouu3l1o2votf4zies0_2018-09-06; _utrace=f3364b7f625039862ebaf21cd2037c8f_2018-09-06;'
             ' track_id=1536212355|a092177d5800c1678ae6b3d425c46b1d1e830a3adfdf3071b7|09180fb9aa0f4903a3bbefd1c8e3ffe0; '
             'USERID=1817989241; SID=vRI4q3x4CZU68lGCQlP6TbeNOghPRj5P5UCQ'
