@@ -4,6 +4,7 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+from datetime import datetime
 from pymongo import MongoClient
 
 
@@ -51,8 +52,12 @@ class MongodbPipeline(object):
         cls = item.__class__.__name__
         if cls == 'CitiesItem':
             self.save_cities(item)
-        # self.coll.save(dict(item))
+        if cls == 'RestaurantItem':
+            self.save_shops(item)
         return item
 
     def save_cities(self, item):
         self.db['cites'].save(dict(item))
+
+    def save_shops(self, item):
+        self.db['shops'].find_one_and_update({'id': item['id']}, {'$set': {'data': item, 'timestamp': datetime.now()}}, upsert=True)

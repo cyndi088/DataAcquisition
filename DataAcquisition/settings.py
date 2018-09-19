@@ -33,9 +33,9 @@ MYSQL_DB = 'yfhunt'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 4
+CONCURRENT_REQUESTS = 16
 
-DOWNLOAD_TIMEOUT = 10
+DOWNLOAD_TIMEOUT = 2
 HTTPPROXY_ENABLED = True
 PROXIES = [
     "http://111.93.84.210:32431",
@@ -83,9 +83,13 @@ DEFAULT_REQUEST_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                 'Chrome/68.0.3440.106 Safari/537.36',
   # 'Referer': 'https://www.ele.me/place/wtm5uruvh6rm?latitude=30.233873&longitude=119.724733',
+  # 'Cookie': 'ubt_ssid=0wc8wcpdkke5njouu3l1o2votf4zies0_2018-09-06; _utrace=f3364b7f625039862ebaf21cd2037c8f_2018-09-06;'
+  #           ' track_id=1536212355|a092177d5800c1678ae6b3d425c46b1d1e830a3adfdf3071b7|09180fb9aa0f4903a3bbefd1c8e3ffe0; '
+  #           'USERID=1817989241; SID=vRI4q3x4CZU68lGCQlP6TbeNOghPRj5P5UCQ'
   'Cookie': 'ubt_ssid=0wc8wcpdkke5njouu3l1o2votf4zies0_2018-09-06; _utrace=f3364b7f625039862ebaf21cd2037c8f_2018-09-06;'
-            ' track_id=1536212355|a092177d5800c1678ae6b3d425c46b1d1e830a3adfdf3071b7|09180fb9aa0f4903a3bbefd1c8e3ffe0; '
-            'USERID=1817989241; SID=vRI4q3x4CZU68lGCQlP6TbeNOghPRj5P5UCQ'
+            ' eleme__ele_me=dcacbd1c8e391dea0149f8ac77bb1b10%3A91a2c47adf54f9ebf3572011b0fe6931e88d0ca2;'
+            ' track_id=1536212355|a092177d5800c1678ae6b3d425c46b1d1e830a3adfdf3071b7|09180fb9aa0f4903a3bbefd1c8e3ffe0;'
+            ' USERID=276010313; SID=6siLPTqa3hWTsK4ErtOW5oHwSEJdiTYPvW9Q'
 }
 
 # Enable or disable spider middlewares

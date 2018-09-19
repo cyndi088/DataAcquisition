@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import time
+import random
 import scrapy
 import json
 from scrapy import Request
@@ -43,16 +45,33 @@ class ElemeSpider(scrapy.Spider):
             longitude = restaurant['longitude']
             info_url = 'https://www.ele.me/restapi/shopping/restaurant/%s?extras[]=flavors&extras[]=qualification&latitude=%f&longitude=%f&terminal=web'
             request = Request(info_url % (rest_id, latitude, longitude), callback=self.info_parse, dont_filter=True)
-            # print('3333333333333333333333333333333')
-            # print(n)
-            # print(i)
-            # print(rest_id)
-            # print('4444444444444444444444444444444')
+            print('3333333333333333333333333333333')
+            print(n)
+            print(i)
+            print(rest_id)
+            print('4444444444444444444444444444444')
+            # time.sleep(random.random() * 3)
             yield request
 
     def info_parse(self, response):
-        res = response.text
-        print('*************************')
-        print(res)
-        print('*************************')
+        res = json.loads(response.text, encoding='gbk')
+        shop = RestaurantItem()
+        shop['authentic_id'] = res['authentic_id']
+        shop['id'] = res['id']
+        shop['name'] = res['name']
+        shop['address'] = res['address']
+        shop['image_path'] = res['image_path']
+        shop['latitude'] = res['latitude']
+        shop['longitude'] = res['longitude']
+        shop['opening_hours'] = res['opening_hours']
+        shop['phone'] = res['phone']
+        shop['qualification_link'] = res['qualification']['link']
+        shop['status'] = res['status']
+        shop['rating'] = res['rating']
+        shop['rating_count'] = res['rating_count']
+        shop['recent_order_num'] = res['recent_order_num']
+        print('55555555555555555555555555555555555')
+        print(shop)
+        print('66666666666666666666666666666')
+        yield shop
 
