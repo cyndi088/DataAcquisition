@@ -43,14 +43,15 @@ class ElemeSpider(scrapy.Spider):
             rest_id = str(restaurant['id'])
             latitude = restaurant['latitude']
             longitude = restaurant['longitude']
-            info_url = 'https://www.ele.me/restapi/shopping/restaurant/%s?extras[]=flavors&extras[]=qualification&latitude=%f&longitude=%f&terminal=web'
+            info_url = 'https://www.ele.me/restapi/shopping/restaurant/%s?extras[]=flavors&extras[]=qualification' \
+                       '&latitude=%f&longitude=%f&terminal=web'
             request = Request(info_url % (rest_id, latitude, longitude), callback=self.info_parse, dont_filter=True)
             print('3333333333333333333333333333333')
             print(n)
             print(i)
             print(rest_id)
             print('4444444444444444444444444444444')
-            # time.sleep(random.random() * 3)
+            time.sleep(random.random() * 1)
             yield request
 
     def info_parse(self, response):
