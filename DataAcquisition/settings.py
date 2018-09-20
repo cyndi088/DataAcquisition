@@ -14,6 +14,7 @@ BOT_NAME = 'DataAcquisition'
 SPIDER_MODULES = ['DataAcquisition.spiders']
 NEWSPIDER_MODULE = 'DataAcquisition.spiders'
 
+"""MONGODB 配置链接"""
 # MONGO_HOST = '106.14.176.62'
 MONGO_HOST = 'localhost'
 MONGO_PORT = 27017
@@ -21,10 +22,14 @@ MONGO_PORT = 27017
 # MONGO_PSW = 'admin'
 MONGO_DB = 'eleme'
 
+"""MYSQL 配置链接"""
 MYSQL_HOST = "192.168.10.121"
 MYSQL_USER = 'hzyg'
 MYSQL_PASSWORD = '@hzyq20180426..'
 MYSQL_DB = 'yfhunt'
+
+"""REDIS 配置链接"""
+REDIS_URL = "redis://127.0.0.1:6379"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'DataAcquisition (+http://www.yourdomain.com)'
@@ -34,6 +39,8 @@ ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 16
+
+RETRY_TIMES = 2
 
 DOWNLOAD_TIMEOUT = 2
 HTTPPROXY_ENABLED = True
@@ -83,9 +90,6 @@ DEFAULT_REQUEST_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                 'Chrome/68.0.3440.106 Safari/537.36',
   # 'Referer': 'https://www.ele.me/place/wtm5uruvh6rm?latitude=30.233873&longitude=119.724733',
-  # 'Cookie': 'ubt_ssid=0wc8wcpdkke5njouu3l1o2votf4zies0_2018-09-06; _utrace=f3364b7f625039862ebaf21cd2037c8f_2018-09-06;'
-  #           ' track_id=1536212355|a092177d5800c1678ae6b3d425c46b1d1e830a3adfdf3071b7|09180fb9aa0f4903a3bbefd1c8e3ffe0; '
-  #           'USERID=1817989241; SID=vRI4q3x4CZU68lGCQlP6TbeNOghPRj5P5UCQ'
   'Cookie': 'ubt_ssid=0wc8wcpdkke5njouu3l1o2votf4zies0_2018-09-06; _utrace=f3364b7f625039862ebaf21cd2037c8f_2018-09-06;'
             ' eleme__ele_me=dcacbd1c8e391dea0149f8ac77bb1b10%3A91a2c47adf54f9ebf3572011b0fe6931e88d0ca2;'
             ' track_id=1536212355|a092177d5800c1678ae6b3d425c46b1d1e830a3adfdf3071b7|09180fb9aa0f4903a3bbefd1c8e3ffe0;'
@@ -102,7 +106,8 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    # 'DataAcquisition.middlewares.DataacquisitionDownloaderMiddleware': 543,
-   'DataAcquisition.middlewares.RandomProxyMiddleware': 543
+   'DataAcquisition.middlewares.RandomProxyMiddleware': 543,
+   # 'DataAcquisition.middlewares.ProxyMiddleware': 543,
 }
 
 # Enable or disable extensions

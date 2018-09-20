@@ -6,20 +6,14 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 import random
 import requests
+import base64
 from scrapy import signals
 from scrapy.exceptions import NotConfigured
 
 
 class RandomProxyMiddleware(object):
     def __init__(self, settings):
-        # self.proxies = settings.getlist('PROXIES')
-        res = requests.get('http://api3.xiguadaili.com/ip/?tid=557678928727000&num=1000&format=json')
-        data_list = res.json()
-        proxies_list = []
-        for data in data_list:
-            proxy = 'http://' + data['host'] + ':' + str(data['port'])
-            proxies_list.append(proxy)
-        self.proxies = proxies_list
+        self.proxies = self.get_ip()
         print('*****************************************************************************')
         print(self.proxies)
         print('*****************************************************************************')
@@ -60,6 +54,17 @@ class RandomProxyMiddleware(object):
         if proxy in self.proxies:
             self.proxies.remove(proxy)
             print('proxy %s removed from proxies list' % proxy)
+
+    @staticmethod
+    def get_ip():
+        url = 'http://api3.xiguadaili.com/ip/?tid=557678928727000&num=10000&area=浙江&sortby=time&format=json'
+        res = requests.get(url)
+        data_list = res.json()
+        proxies_list = []
+        for data in data_list:
+            proxy = 'http://' + data['host'] + ':' + str(data['port'])
+            proxies_list.append(proxy)
+        return proxies_list
 
 
 class DataacquisitionSpiderMiddleware(object):
@@ -155,3 +160,23 @@ class DataacquisitionDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class ProxyMiddleware(object):
+    # overwrite process request
+    def process_request(self, request, spider):
+        # Set the location of the proxy
+        request.meta['proxy'] = "http://http-proxy-sg2.dobel.cn:9180"
+
+        # Use the following lines if your proxy requires authentication
+        proxy_user_pass = "YOUQUANHTTTEST1:KIFKOY"
+        # setup basic authentication for the proxy
+        # For python3
+        encoded_user_pass = "Basic " + base64.urlsafe_b64encode(bytes((proxy_user_pass), "ascii")).decode("utf8")
+        # For python2
+        # encoded_user_pass = "Basic " + base64.b64encode(proxy_user_pass)
+
+        request.headers['Proxy-Authorization'] = encoded_user_pass
+
+
+
