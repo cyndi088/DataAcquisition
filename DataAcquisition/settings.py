@@ -38,33 +38,13 @@ REDIS_URL = "redis://127.0.0.1:6379"
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = 12
 
-RETRY_TIMES = 2
+RETRY_TIMES = 1
 
 DOWNLOAD_TIMEOUT = 2
 HTTPPROXY_ENABLED = True
-PROXIES = [
-    "http://111.93.84.210:32431",
-    "http://61.178.176.25:58938",
-    "http://59.152.199.42:38157",
-    "http://221.7.255.167:80",
-    "http://121.31.100.42:8123",
-    "http://24.52.150.96:46658",
-    "http://47.105.131.134:80",
-    "http://128.199.90.230:8118",
-    "http://106.56.102.137:8070",
-    "http://47.105.131.144:80",
-    "http://110.77.211.164:8080",
-    "http://43.245.35.153:23500",
-    "http://175.101.11.132:55345",
-    "http://47.105.73.113:80",
-    "http://110.73.41.214:8123",
-    "http://175.175.219.88:1133",
-    "http://47.105.91.138:80",
-    "http://171.38.79.29:8123",
-    "http://92.113.181.6:48380",
-    "http://221.7.255.167:8080"]
+
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -79,6 +59,9 @@ COOKIES_ENABLED = True
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
+
+HTTPERROR_ALLOWED_CODES = [401]
+
 
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
@@ -98,9 +81,9 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-# SPIDER_MIDDLEWARES = {
-#    'DataAcquisition.middlewares.DataacquisitionSpiderMiddleware': 543,
-# }
+SPIDER_MIDDLEWARES = {
+   # 'DataAcquisition.middlewares.DataacquisitionSpiderMiddleware': 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
@@ -112,15 +95,15 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
-# EXTENSIONS = {
-#    'scrapy.extensions.telnet.TelnetConsole': None,
-# }
+EXTENSIONS = {
+   # 'scrapy.extensions.telnet.TelnetConsole': None,
+}
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    # 'DataAcquisition.pipelines.DataacquisitionPipeline': 300,
-    'DataAcquisition.pipelines.MongodbPipeline': 350,
+   'DataAcquisition.pipelines.MongodbPipeline': 350,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

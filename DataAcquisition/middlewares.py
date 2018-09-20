@@ -38,10 +38,11 @@ class RandomProxyMiddleware(object):
             self.stats[cur_proxy] += 1
         if self.stats[cur_proxy] >= self.max_failed:
             self.remove_proxy(cur_proxy)
-        if response.status < 400:
-            return response
-        del request.meta['proxy']
-        return request
+        # if response.status < 400:
+        #     return response
+        # del request.meta['proxy']
+        # return request
+        return response
 
     def process_exception(self, request, exception, spider):
         cur_proxy = request.meta['proxy']
@@ -57,7 +58,7 @@ class RandomProxyMiddleware(object):
 
     @staticmethod
     def get_ip():
-        url = 'http://api3.xiguadaili.com/ip/?tid=557678928727000&num=10000&area=浙江&sortby=time&format=json'
+        url = 'http://api3.xiguadaili.com/ip/?tid=557678928727000&num=100&area=浙江&sortby=time&format=json'
         res = requests.get(url)
         data_list = res.json()
         proxies_list = []

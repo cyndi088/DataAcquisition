@@ -21,16 +21,6 @@ class MongodbPipeline(object):
         self.mongo_psw = mongo_psw
         self.mongo_db = mongo_db
 
-        # settings = get_project_settings()
-        # self.client = MongoClient(
-        #     host=settings['MONGO_HOST'],
-        #     port=settings['MONGO_PORT'],
-        #     username=settings['MONGO_USER'],
-        #     password=settings['MONGO_PSW']
-        # )
-        # self.db = self.client[settings['MONGO_DB']]
-        # self.coll = self.db[settings['MONGO_COLL']]
-
     @classmethod
     def from_crawler(cls, crawlder):
         return cls(
@@ -60,4 +50,5 @@ class MongodbPipeline(object):
         self.db['cites'].save(dict(item))
 
     def save_shops(self, item):
-        self.db['shops'].find_one_and_update({'id': item['id']}, {'$set': {'data': item, 'timestamp': datetime.now()}}, upsert=True)
+        self.db['shops'].find_one_and_update({'id': item['id']}, {'$set': {'data': item, 'timestamp': datetime.now()}},
+                                             upsert=True)
