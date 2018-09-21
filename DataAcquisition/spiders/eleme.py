@@ -20,59 +20,78 @@ class ElemeSpider(scrapy.Spider):
     def parse(self, response):
         res = response.text
         data_list = json.loads(res, encoding='gbk')
-        restaurants_parse_url = 'https://www.ele.me/restapi/shopping/restaurants?' \
-                                'extras[]=activities&geohash=%s&latitude=%f&limit=24&' \
-                                'longitude=%f&offset=%d&terminal=web'
+        # restaurants_parse_url = 'https://www.ele.me/restapi/shopping/restaurants?' \
+        #                         'extras[]=activities&geohash=%s&latitude=%f&limit=24&' \
+        #                         'longitude=%f&offset=%d&terminal=web'
+        restaurants_parse_url = 'https://mainsite-restapi.ele.me/pizza/v3/restaurants?offset=%d&limit=10&' \
+                                'latitude=%f&longitude=%f&extras=["activities"]&' \
+                                'extra_filters=home&keyword=&order_by=0&terminal=weapp&user_id=1817989241'
         n = 0
+        offset = 0
         for data in data_list:
             n += 1
+            print('-----------------------------------------------------')
+            print(data)
+            print('-----------------------------------------------------')
             geohash = data['geohash']
             latitude = data['latitude']
             longitude = data['longitude']
-            request = Request(restaurants_parse_url % (geohash, latitude, longitude, 0),
-                              callback=self.restaurants_parse, meta={'n': n}, dont_filter=True)
+            # request = Request(restaurants_parse_url % (geohash, latitude, longitude, 0),
+            #                   callback=self.restaurants_parse, meta={'n': n}, dont_filter=True)
+            request = Request(restaurants_parse_url % (offset, latitude, longitude),
+                              callback=self.restaurants_parse, meta={'n': n, 'offset': offset, 'latitude': latitude,
+                                                                     'longitude': longitude}, dont_filter=True)
             yield request
 
     def restaurants_parse(self, response):
+        restaurants_parse_url = 'https://mainsite-restapi.ele.me/pizza/v3/restaurants?offset=%d&limit=10&' \
+                                'latitude=%f&longitude=%f&extras=["activities"]&' \
+                                'extra_filters=home&keyword=&order_by=0&terminal=weapp&user_id=1817989241'
         n = response.meta['n']
+        offset = response.meta['offset']
+        latitude = response.meta['latitude']
+        longitude = response.meta['longitude']
         res = response.text
-        restaurant_list = json.loads(res, encoding='gbk')
+        data_list = json.loads(res, encoding='utf-8')
+        # print('*****************************')
+        # print(info_list['items'])
+        # print('*****************************')
         i = 0
-        for restaurant in restaurant_list:
-            i += 1
-            rest_id = str(restaurant['id'])
-            latitude = restaurant['latitude']
-            longitude = restaurant['longitude']
-            info_url = 'https://www.ele.me/restapi/shopping/restaurant/%s?extras[]=flavors&extras[]=qualification' \
-                       '&latitude=%f&longitude=%f&terminal=web'
-            request = Request(info_url % (rest_id, latitude, longitude), callback=self.info_parse, dont_filter=True)
-            print('3333333333333333333333333333333')
-            print(n)
-            print(i)
-            print(rest_id)
-            print('4444444444444444444444444444444')
-            time.sleep(random.random() * 1)
+        shop = RestaurantItem()
+        if data_list['items']:
+            for data in data_list['items']:
+                i += 1
+                info = data['restaurant']
+                shop['address'] = info['address']
+                shop['authentic_id'] = info['authentic_id']
+                shop['description'] = info['description']
+                shop['id'] = info['id']
+                shop['image_path'] = info['image_path']
+                shop['latitude'] = info['latitude']
+                shop['longitude'] = info['longitude']
+                shop['name'] = info['name']
+                shop['opening_hours'] = info['opening_hours']
+                shop['phone'] = info['phone']
+                shop['rating'] = info['rating']
+                shop['rating_count'] = info['rating_count']
+                shop['recent_order_num'] = info['recent_order_num']
+                shop['status'] = info['status']
+                shop['type'] = info['type']
+                print('3333333333333333333333333333333')
+                print(n)
+                print(i)
+                print(shop)
+                print('4444444444444444444444444444444')
+                # time.sleep(random.random() * 2)
+                yield shop
+            offset += 10
+            request = Request(restaurants_parse_url % (offset, latitude, longitude),
+                              callback=self.restaurants_parse, meta={'n': n, 'offset': offset, 'latitude': latitude,
+                                                                     'longitude': longitude}, dont_filter=True)
+            # time.sleep(random.random() * 2)
             yield request
+        else:
+            pass
 
     def info_parse(self, response):
-        res = json.loads(response.text, encoding='gbk')
-        shop = RestaurantItem()
-        shop['authentic_id'] = res['authentic_id']
-        shop['id'] = res['id']
-        shop['name'] = res['name']
-        shop['address'] = res['address']
-        shop['image_path'] = res['image_path']
-        shop['latitude'] = res['latitude']
-        shop['longitude'] = res['longitude']
-        shop['opening_hours'] = res['opening_hours']
-        shop['phone'] = res['phone']
-        shop['qualification_link'] = res['qualification']['link']
-        shop['status'] = res['status']
-        shop['rating'] = res['rating']
-        shop['rating_count'] = res['rating_count']
-        shop['recent_order_num'] = res['recent_order_num']
-        print('55555555555555555555555555555555555')
-        print(shop)
-        print('66666666666666666666666666666')
-        yield shop
-
+        pass

@@ -26,6 +26,7 @@ class CitiesItem(scrapy.Item):
 
 class RestaurantItem(scrapy.Item):
     authentic_id = scrapy.Field()
+    description = scrapy.Field()
     id = scrapy.Field()
     name = scrapy.Field()
     address = scrapy.Field()
@@ -39,3 +40,4 @@ class RestaurantItem(scrapy.Item):
     rating = scrapy.Field()
     rating_count = scrapy.Field()
     recent_order_num = scrapy.Field()
+    type = scrapy.Field()

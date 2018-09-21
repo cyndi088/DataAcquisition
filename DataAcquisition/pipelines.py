@@ -50,5 +50,5 @@ class MongodbPipeline(object):
         self.db['cites'].save(dict(item))
 
     def save_shops(self, item):
-        self.db['shops'].find_one_and_update({'id': item['id']}, {'$set': {'data': item, 'timestamp': datetime.now()}},
-                                             upsert=True)
+        self.db['shops_wx'].find_one_and_update({'id': item['id']},
+                                                {'$set': {'data': item, 'timestamp': datetime.now()}}, upsert=True)
