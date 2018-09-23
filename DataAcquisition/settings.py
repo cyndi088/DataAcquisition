@@ -40,9 +40,9 @@ ROBOTSTXT_OBEY = False
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 12
 
-RETRY_TIMES = 1
+RETRY_TIMES = 5
 
-DOWNLOAD_TIMEOUT = 2
+DOWNLOAD_TIMEOUT = 1
 HTTPPROXY_ENABLED = True
 
 
