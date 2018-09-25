@@ -26,6 +26,7 @@ class ElemeSpider(scrapy.Spider):
         restaurants_parse_url = 'https://mainsite-restapi.ele.me/pizza/v3/restaurants?offset=%d&limit=10&' \
                                 'latitude=%f&longitude=%f&extras=["activities"]&' \
                                 'extra_filters=home&keyword=&order_by=0&terminal=weapp&user_id=1817989241'
+
         n = 0
         offset = 0
         for data in data_list:
@@ -47,52 +48,66 @@ class ElemeSpider(scrapy.Spider):
         restaurants_parse_url = 'https://mainsite-restapi.ele.me/pizza/v3/restaurants?offset=%d&limit=10&' \
                                 'latitude=%f&longitude=%f&extras=["activities", "qualification"]&' \
                                 'extra_filters=home&keyword=&order_by=0&terminal=weapp&user_id=1817989241'
-        qualification_parse_url = 'https://h5.ele.me/restapi/shopping/v1/restaurants/E16570303048828880446/business/' \
-                                  'qualification?latitude=%f&longitude=%f&terminal=h5'
+        # restaurants_parse_url = 'https://www.ele.me/restapi/shopping/restaurant/166988867?extras[]=flavors&' \
+        #                         'extras[]=qualification&latitude=%d&longitude=%d&terminal=web'
+        # qualification_parse_url = 'https://h5.ele.me/restapi/shopping/v1/restaurants/E16570303048828880446/business/' \
+        #                           'qualification?latitude=%f&longitude=%f&terminal=h5'
+        # qualification_parse_url = 'https://h5.ele.me/shop/certification/#/?restaurant_id=%d'
         n = response.meta['n']
         offset = response.meta['offset']
         latitude = response.meta['latitude']
         longitude = response.meta['longitude']
         res = response.text
         data_list = json.loads(res, encoding='utf-8')
-        print('*****************************')
-        print(data_list)
-        print('*****************************')
-        # i = 0
-        # shop = RestaurantItem()
-        # if data_list['items']:
-        #     for data in data_list['items']:
-        #         i += 1
-        #         info = data['restaurant']
-        #         shop['address'] = info['address']
-        #         shop['authentic_id'] = info['authentic_id']
-        #         shop['description'] = info['description']
-        #         shop['id'] = info['id']
-        #         shop['image_path'] = info['image_path']
-        #         shop['latitude'] = info['latitude']
-        #         shop['longitude'] = info['longitude']
-        #         shop['name'] = info['name']
-        #         shop['opening_hours'] = info['opening_hours']
-        #         shop['phone'] = info['phone']
-        #         shop['rating'] = info['rating']
-        #         shop['rating_count'] = info['rating_count']
-        #         shop['recent_order_num'] = info['recent_order_num']
-        #         shop['status'] = info['status']
-        #         shop['type'] = info['type']
-        #         yield shop
-        #     offset += 10
-        #     request1 = Request(restaurants_parse_url % (offset, latitude, longitude), callback=self.restaurants_parse,
-        #                        meta={'n': n, 'offset': offset, 'latitude': latitude, 'longitude': longitude},
-        #                        dont_filter=True)
-        #     request2 = Request(qualification_parse_url % (latitude, longitude), callback=self.qulification_parse,
-        #                        dont_filter=True)
-        #     time.sleep(random.random() * 2)
-        #     yield request1
-        # else:
-        #     pass
+        i = 0
+        shop = RestaurantItem()
+        if data_list['items']:
+            for data in data_list['items']:
+                i += 1
+                info = data['restaurant']
+                shop['address'] = info['address']
+                shop['authentic_id'] = info['authentic_id']
+                shop['description'] = info['description']
+                shop['id'] = info['id']
+                shop['image_path'] = info['image_path']
+                shop['latitude'] = info['latitude']
+                shop['longitude'] = info['longitude']
+                shop['name'] = info['name']
+                shop['opening_hours'] = info['opening_hours']
+                if info['phone']:
+                    shop['phone'] = info['phone']
+                else:
+                    shop['phone'] = '0'
+                shop['rating'] = info['rating']
+                shop['rating_count'] = info['rating_count']
+                shop['recent_order_num'] = info['recent_order_num']
+                shop['status'] = info['status']
+                shop['type'] = info['type']
+                print('***************************')
+                print(n)
+                print(offset)
+                print(i)
+                print(shop)
+                print('***************************')
+                yield shop
+            offset += 10
+            request = Request(restaurants_parse_url % (offset, latitude, longitude), callback=self.restaurants_parse,
+                              meta={'n': n, 'offset': offset, 'latitude': latitude, 'longitude': longitude},
+                              dont_filter=True)
+            time.sleep(random.random() * 2)
+            yield request
+        else:
+            pass
 
     def qulification_parse(self, response):
         res = response.text
-        print('**********************************************')
+        print('***************************')
         print(res)
-        print('**********************************************')
+        print('***************************')
+
+    def info_parse(self, response):
+        res = response.text
+        print('***************************')
+        print(res)
+        print('***************************')
+

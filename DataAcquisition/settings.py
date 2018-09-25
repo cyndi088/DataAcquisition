@@ -60,7 +60,7 @@ COOKIES_ENABLED = True
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
 
-HTTPERROR_ALLOWED_CODES = [401]
+HTTPERROR_ALLOWED_CODES = [401, 400]
 
 
 # Override the default request headers:
@@ -72,13 +72,19 @@ DEFAULT_REQUEST_HEADERS = {
   # 'Scheme': 'https',
   # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
   #               'Chrome/68.0.3440.106 Safari/537.36',
-  'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15G77 MicroMessenger/6.7.2 NetType/WIFI Language/zh_CN',
+  'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) '
+                'Mobile/15G77 MicroMessenger/6.7.2 NetType/WIFI Language/zh_CN',
   # 'Referer': 'https://www.ele.me/place/wtm5uruvh6rm?latitude=30.233873&longitude=119.724733',
-  # 'Cookie': 'ubt_ssid=0wc8wcpdkke5njouu3l1o2votf4zies0_2018-09-06; _utrace=f3364b7f625039862ebaf21cd2037c8f_2018-09-06;'
-  #           ' eleme__ele_me=dcacbd1c8e391dea0149f8ac77bb1b10%3A91a2c47adf54f9ebf3572011b0fe6931e88d0ca2;'
-  #           ' track_id=1536212355|a092177d5800c1678ae6b3d425c46b1d1e830a3adfdf3071b7|09180fb9aa0f4903a3bbefd1c8e3ffe0;'
-  #           ' USERID=276010313; SID=6siLPTqa3hWTsK4ErtOW5oHwSEJdiTYPvW9Q',
-  'Cookie': 'SID=lVstC4FAOsyjj3WEl4ct9Bfq2BqIL7WtWk5w; _utrace=b394325f0b5c8ed39f175f6d7ca42737_2018-09-20; ubt_ssid=conxzxx08xy0il6fe0eqmnjosa71awt5_2018-09-20; perf_ssid=ioqf4z05g40l9rqiz32je8sd7wzr59f3_2018-09-20'
+  'Cookie': 'ubt_ssid=i1gqxbk3hpmufsld8ed8xp38415n3th1_2018-09-25;'
+            ' _utrace=deeceaed6aefe9f89066c85f1a0acfa4_2018-09-25;'
+            ' eleme__ele_me=5e56a3f0b170b5b7eec71cc50d08d8ac%3Aafb1035ff2d5d1eebf2d187e8ea78b0365eeaeed;'
+            ' track_id=1537839720|91cd35d9efc8f823ab2ba961e29b07b1074bf1f83845183072|6254931c062996e3682527c9f43485ab;'
+            ' USERID=276010313;'
+            ' SID=M13Fx3cJ5ZWiIdIu9Fs89KkzcayxP8r1vA0w',
+  # 'Cookie': 'SID=lVstC4FAOsyjj3WEl4ct9Bfq2BqIL7WtWk5w; '
+  #           '_utrace=b394325f0b5c8ed39f175f6d7ca42737_2018-09-20; '
+  #           'ubt_ssid=conxzxx08xy0il6fe0eqmnjosa71awt5_2018-09-20; '
+  #           'perf_ssid=ioqf4z05g40l9rqiz32je8sd7wzr59f3_2018-09-20'
 }
 
 # Enable or disable spider middlewares
