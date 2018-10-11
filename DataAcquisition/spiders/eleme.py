@@ -101,13 +101,13 @@ class ElemeSpider(scrapy.Spider):
 
     def qulification_parse(self, response):
         res = response.text
-        print('***************************')
+        print('*************测试1**************')
         print(res)
         print('***************************')
 
     def info_parse(self, response):
         res = response.text
-        print('***************************')
+        print('**************测试2*************')
         print(res)
         print('***************************')
 
