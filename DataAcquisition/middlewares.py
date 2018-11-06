@@ -58,7 +58,7 @@ class RandomProxyMiddleware(object):
 
     @staticmethod
     def get_ip():
-        url = 'http://api3.xiguadaili.com/ip/?tid=557678928727000&num=50000&sortby=time&format=json'
+        url = 'http://api3.xiguadaili.com/ip/?tid=556608420438524&num=50000&sortby=time&format=json'
         res = requests.get(url)
         data_list = res.json()
         proxies_list = []
