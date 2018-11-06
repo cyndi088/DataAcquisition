@@ -20,9 +20,6 @@ class ElemeSpider(scrapy.Spider):
     def parse(self, response):
         res = response.text
         data_list = json.loads(res, encoding='gbk')
-        # restaurants_parse_url = 'https://www.ele.me/restapi/shopping/restaurants?' \
-        #                         'extras[]=activities&geohash=%s&latitude=%f&limit=24&' \
-        #                         'longitude=%f&offset=%d&terminal=web'
         restaurants_parse_url = 'https://mainsite-restapi.ele.me/pizza/v3/restaurants?offset=%d&limit=10&' \
                                 'latitude=%f&longitude=%f&extras=["activities"]&' \
                                 'extra_filters=home&keyword=&order_by=0&terminal=weapp&user_id=1817989241'
@@ -37,8 +34,6 @@ class ElemeSpider(scrapy.Spider):
             geohash = data['geohash']
             latitude = data['latitude']
             longitude = data['longitude']
-            # request = Request(restaurants_parse_url % (geohash, latitude, longitude, 0),
-            #                   callback=self.restaurants_parse, meta={'n': n}, dont_filter=True)
             request = Request(restaurants_parse_url % (offset, latitude, longitude),
                               callback=self.restaurants_parse, meta={'n': n, 'offset': offset, 'latitude': latitude,
                                                                      'longitude': longitude}, dont_filter=True)
@@ -48,11 +43,6 @@ class ElemeSpider(scrapy.Spider):
         restaurants_parse_url = 'https://mainsite-restapi.ele.me/pizza/v3/restaurants?offset=%d&limit=10&' \
                                 'latitude=%f&longitude=%f&extras=["activities", "qualification"]&' \
                                 'extra_filters=home&keyword=&order_by=0&terminal=weapp&user_id=1817989241'
-        # restaurants_parse_url = 'https://www.ele.me/restapi/shopping/restaurant/166988867?extras[]=flavors&' \
-        #                         'extras[]=qualification&latitude=%d&longitude=%d&terminal=web'
-        # qualification_parse_url = 'https://h5.ele.me/restapi/shopping/v1/restaurants/E16570303048828880446/business/' \
-        #                           'qualification?latitude=%f&longitude=%f&terminal=h5'
-        # qualification_parse_url = 'https://h5.ele.me/shop/certification/#/?restaurant_id=%d'
         n = response.meta['n']
         offset = response.meta['offset']
         latitude = response.meta['latitude']
@@ -101,13 +91,13 @@ class ElemeSpider(scrapy.Spider):
 
     def qulification_parse(self, response):
         res = response.text
-        print('*************测试1**************')
+        print('***************************')
         print(res)
         print('***************************')
 
     def info_parse(self, response):
         res = response.text
-        print('**************测试2*************')
+        print('***************************')
         print(res)
         print('***************************')
 

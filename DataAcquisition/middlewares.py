@@ -38,10 +38,6 @@ class RandomProxyMiddleware(object):
             self.stats[cur_proxy] += 1
         if self.stats[cur_proxy] >= self.max_failed:
             self.remove_proxy(cur_proxy)
-        # if response.status < 400:
-        #     return response
-        # del request.meta['proxy']
-        # return request
         return response
 
     def process_exception(self, request, exception, spider):
