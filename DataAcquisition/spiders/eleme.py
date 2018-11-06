@@ -8,6 +8,9 @@ from DataAcquisition.items import RestaurantItem
 
 
 class ElemeSpider(scrapy.Spider):
+    """
+    目前采集临安数据
+    """
     name = 'eleme'
     allowed_domains = ['www.ele.me/home/', 'www.ele.me/']
     urls_list = []
