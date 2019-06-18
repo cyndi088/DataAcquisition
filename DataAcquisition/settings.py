@@ -15,7 +15,6 @@ SPIDER_MODULES = ['DataAcquisition.spiders']
 NEWSPIDER_MODULE = 'DataAcquisition.spiders'
 
 """MONGODB 配置链接"""
-# MONGO_HOST = '106.14.176.62'
 MONGO_HOST = '192.168.10.125'
 MONGO_PORT = 27017
 # MONGO_USER = 'admin'
