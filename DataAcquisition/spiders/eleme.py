@@ -110,4 +110,3 @@ class ElemeSpider(scrapy.Spider):
         print('***************************')
         print(res)
         print('***************************')
-
